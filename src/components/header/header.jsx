@@ -1,12 +1,13 @@
 import React from "react";
-import './header.css'
+import "./header.css";
 
 export const Header = () => {
-    return (
-        <header id="header">
-            <span>
-                MakeDogFun
-            </span>
-        </header>
-    )
-}
+  return (
+    <header id="header">
+      <div>
+        <h2>MakeDogFun</h2>
+        <div className="dogicon"></div>
+      </div>
+    </header>
+  );
+};
