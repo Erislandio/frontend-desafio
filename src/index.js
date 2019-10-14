@@ -3,12 +3,13 @@ import ReactDOM from "react-dom";
 import { Header } from "./components/header/header.jsx";
 import './App.css'
 import { Footer } from "./components/footer/footer.jsx";
+import Dashboard from './components/dashboard/dashboard'
 
 const App = () => {
   return (
     <div id="app">
       <Header />
-      <div></div>
+      <Dashboard />
       <Footer />
     </div>
   );
