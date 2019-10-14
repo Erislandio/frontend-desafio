@@ -1,14 +1,97 @@
-#dashboard {
-  background: #9796f0;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #fbc7d4, #9796f0);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #fbc7d4, #9796f0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  
-  height: 90vh;
+body {
+  background: #9796f0; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #fbc7d4,
+    #9796f0
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #fbc7d4,
+    #9796f0
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  position: relative;
 }
-
 
 #dashboard > div {
   margin: 0 auto;
   max-width: 1366px;
   padding: 20px;
+}
+
+.dash {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.dash h3, select {
+  font-family: "Roboto", sans-serif;
+  text-align: left;
+  display: block;
+  width: 100%;
+  max-width: 400px;
+}
+
+#imageDog {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 500px;
+  max-height: 500px;
+  padding: 15px;
+  border: 1px solid #dedede;
+  background: #fff;
+  box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
+}
+
+.select-box {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #dedede;
+  padding: 20px;
+  max-width: 500px;
+  width: 100%;
+  margin: 20px auto;
+}
+
+.dash select {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 15px;
+  border-radius: 20px;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
+  background: #fff;
+  border: 1px solid #dedede;
+}
+
+.dash input {
+  border: 0px;
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+  max-width: 400px;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.dash button {
+  width: 100%;
+  max-width: 400px;
+  display: block;
+  background: #9b59b6;
+  font-size: 20px;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 15px;
+
 }
