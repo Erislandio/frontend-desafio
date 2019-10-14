@@ -1,16 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Header } from "./components/header/header.jsx";
 
 const App = () => {
+  return (
+    <div id="app">
+      <Header />
+    </div>
+  );
+};
 
-    return (
-        <div>
-            teste
-        </div>
-    )
-
-}
-
-ReactDOM.render(<App />, document.getElementById('root'));
-
-
+ReactDOM.render(<App />, document.getElementById("root"));
