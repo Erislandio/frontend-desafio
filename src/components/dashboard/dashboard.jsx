@@ -19,12 +19,16 @@ class Dashboard extends Component {
   }
 
   async componentDidMount() {
+
+    const { alert } = this.props
+    const storage = window.localStorage.getItem('user')
+
     try {
-      if (document.cookie !== "") {
-        const cookie = JSON.parse(window.document.cookie.split("user=")[1]);
+      if (storage) {
+        const cookie = JSON.parse(storage);
 
         this.setState({ ...this.state, ...cookie, loading: false });
-        this.props.alert.show("Conteúdo carregado");
+        alert.show("Conteúdo carregado");
       } else {
         const {
           data: { message }
@@ -51,7 +55,7 @@ class Dashboard extends Component {
 
   handleSaveInfo = () => {
     try {
-      window.document.cookie = "user=" + JSON.stringify(this.state);
+      window.localStorage.setItem('user', JSON.stringify(this.state))
       this.props.alert.success("Conteúdo salvo com sucesso!");
     } catch (error) {
       this.props.alert.error("Ops! não foi possível salvar o conteúdo!");
