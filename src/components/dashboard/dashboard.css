@@ -20,27 +20,43 @@ body {
 }
 
 .dash {
-  height: 100vh;
   display: flex;
-  flex-direction: column;
   max-width: 1366px;
   margin: 0 auto;
   padding: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  height: 100vh;
+  justify-content: space-around;
 }
 
-.dash h3, select {
+.dash h3,
+select,
+input {
   font-family: "Roboto", sans-serif;
   text-align: left;
   display: block;
   width: 100%;
   max-width: 400px;
+  font-size: 18px;
+}
+
+.imageContainer {
+  position: relative;
+}
+
+.imageContainer h4 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 15%;
+  font-size: 25px;
 }
 
 #imageDog {
   width: 100%;
-  margin: 0 auto;
-  max-width: 500px;
   max-height: 500px;
+  max-width: 500px;
   padding: 15px;
   border: 1px solid #dedede;
   background: #fff;
@@ -57,7 +73,6 @@ body {
   padding: 20px;
   max-width: 500px;
   width: 100%;
-  margin: 20px auto;
 }
 
 .dash select {
@@ -93,5 +108,14 @@ body {
   border: none;
   border-radius: 20px;
   padding: 15px;
+}
 
+@media screen and (max-width: 768px) {
+  .dash {
+    height: auto;
+  }
+
+  .select-box {
+    margin-top: 20px;
+  }
 }
