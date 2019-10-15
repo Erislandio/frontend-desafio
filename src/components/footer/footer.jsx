@@ -12,12 +12,21 @@ export const Footer = () => {
           <ul>
             <li id="linkedin">
               <a
+                rel="noopener noreferrer"
                 href="https://www.linkedin.com/in/erislandio-soares-a08816141/"
                 target="_blank"
-              />
+              >
+                linkedin
+              </a>
             </li>
             <li id="github">
-              <a href="https://github.com/Erislandio/" target="_blank" />
+              <a
+                rel="noopener noreferrer"
+                href="https://github.com/Erislandio/"
+                target="_blank"
+              >
+                git
+              </a>
             </li>
           </ul>
         </div>

@@ -13,34 +13,43 @@ export default class Dashboard extends Component {
       dog: "",
       font: "Mansalva",
       name: "",
-      imageLoading: false,
       color: "#fff"
     };
   }
 
   async componentDidMount() {
     try {
-      const {
-        data: { message }
-      } = await axios.get(`https://dog.ceo/api/breeds/list/all`);
+      if (document.cookie !== "") {
+        const cookie = JSON.parse(window.document.cookie.split("user=")[1]);
 
-      let breedsList = [];
+        this.setState({ ...this.state, ...cookie, loading: false });
+      } else {
+        const {
+          data: { message }
+        } = await axios.get(`https://dog.ceo/api/breeds/list/all`);
 
-      Object.keys(message).forEach(function(key) {
-        breedsList.push(key);
-      });
+        let breedsList = [];
 
-      const {
-        data: { message: dog }
-      } = await axios.get(
-        `https://dog.ceo/api/breed/${breedsList[0]}/images/random`
-      );
+        Object.keys(message).forEach(function(key) {
+          breedsList.push(key);
+        });
 
-      this.setState({ breedsList, loading: false, dog });
+        const {
+          data: { message: dog }
+        } = await axios.get(
+          `https://dog.ceo/api/breed/${breedsList[0]}/images/random`
+        );
+
+        this.setState({ breedsList, loading: false, dog });
+      }
     } catch (error) {
       console.log(error);
     }
   }
+
+  handleSaveInfo = () => {
+    window.document.cookie = "user=" + JSON.stringify(this.state);
+  };
 
   handleChangeBreeds = async breeds => {
     try {
@@ -110,7 +119,7 @@ export default class Dashboard extends Component {
         <div className="dash">
           <div className="imageContainer">
             <h4 style={{ fontFamily: font, color }}>{name}</h4>
-            <img src={imageDog} id="imageDog" />
+            <img src={imageDog} id="imageDog" alt="cachorrit"/>
           </div>
           <div className="select-box">
             <h3> Selecione a Raça</h3>
@@ -121,6 +130,7 @@ export default class Dashboard extends Component {
             </select>
             <h3> Nome do doguinho :-)</h3>
             <input
+              value={name}
               type="text"
               placeholder="Nome"
               onChange={e => {
@@ -151,7 +161,7 @@ export default class Dashboard extends Component {
                 );
               })}
             </select>
-            <button>Salvar!</button>
+            <button onClick={() => this.handleSaveInfo()}>Salvar!</button>
           </div>
         </div>
       );
