@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import "./dashboard.css";
 import axios from "axios";
 import { Loading } from "../loading/loading";
+import { withAlert } from "react-alert";
 
-export default class Dashboard extends Component {
+class Dashboard extends Component {
   constructor(props) {
     super(props);
 
@@ -23,6 +24,7 @@ export default class Dashboard extends Component {
         const cookie = JSON.parse(window.document.cookie.split("user=")[1]);
 
         this.setState({ ...this.state, ...cookie, loading: false });
+        this.props.alert.show("Conteúdo carregado");
       } else {
         const {
           data: { message }
@@ -48,7 +50,12 @@ export default class Dashboard extends Component {
   }
 
   handleSaveInfo = () => {
-    window.document.cookie = "user=" + JSON.stringify(this.state);
+    try {
+      window.document.cookie = "user=" + JSON.stringify(this.state);
+      this.props.alert.success("Conteúdo salvo com sucesso!");
+    } catch (error) {
+      this.props.alert.error("Ops! não foi possível salvar o conteúdo!");
+    }
   };
 
   handleChangeBreeds = async breeds => {
@@ -58,7 +65,11 @@ export default class Dashboard extends Component {
       } = await axios.get(`https://dog.ceo/api/breed/${breeds}/images/random`);
 
       this.setState({ dog: message });
-    } catch (error) {}
+      this.props.alert.success("Conteúdo alterado com sucesso!");
+
+    } catch (error) {
+      this.props.alert.error("Não foi possível alterar tente novamente!");
+    }
   };
 
   render() {
@@ -119,7 +130,7 @@ export default class Dashboard extends Component {
         <div className="dash">
           <div className="imageContainer">
             <h4 style={{ fontFamily: font, color }}>{name}</h4>
-            <img src={imageDog} id="imageDog" alt="cachorrit"/>
+            <img src={imageDog} id="imageDog" alt="cachorrit" />
           </div>
           <div className="select-box">
             <h3> Selecione a Raça</h3>
@@ -168,3 +179,5 @@ export default class Dashboard extends Component {
     }
   }
 }
+
+export default withAlert()(Dashboard);
